@@ -95,7 +95,10 @@ class Address extends SerializableLiteral<AddressConfig> {
       // by lotus for the same message). I'm not sure what's wrong here without
       // debugging lotus itself and watching the values change, but since we're
       // not guaranteeing cryptographic integrity, I'm letting this one slide for now.
-      return await this.signBuffer(Buffer.from(message.cid.value));
+      console.log('Jim signMessage', message, message.cid.value)
+      const sig = await this.signBuffer(Buffer.from(message.cid.value));
+      console.log('Jim signMessage sig', sig)
+      return sig
     } else {
       throw new Error(
         `Could not sign message with address ${this.value} due to not having the associated private key.`

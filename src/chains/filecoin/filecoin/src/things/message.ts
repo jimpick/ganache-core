@@ -115,10 +115,14 @@ class Message
       params: {
         deserializedName: "params",
         serializedName: "Params",
-        defaultValue: literal =>
-          typeof literal !== "undefined"
-            ? Buffer.from(literal)
+        defaultValue: literal => {
+          console.log('JimX message params', typeof literal, literal)
+          const result = typeof literal !== "undefined" && literal !== null
+            ? Buffer.from(literal, 'base64')
             : Buffer.from([0])
+          console.log('JimX message params result', result)
+          return result
+        }
       }
     };
   }

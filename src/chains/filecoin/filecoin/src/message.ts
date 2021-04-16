@@ -131,6 +131,9 @@ export async function verifyMessageSignature(
 
   switch (signedMessage.signature.type) {
     case SigType.SigTypeBLS: {
+      console.log('Jim verifyBLS', signedMessage.message.cid.value, signedMessage.signature)
+      console.log('Jim verifyBLS2', signedMessage.cid)
+      console.log('Jim verifyBLS3', signedMessage)
       const verified = await address.verifySignature(
         Buffer.from(signedMessage.message.cid.value),
         signedMessage.signature

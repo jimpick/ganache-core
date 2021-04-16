@@ -356,7 +356,11 @@ export default class Blockchain extends Emittery.Typed<
     try {
       await this.#messagePoolLock.acquire();
 
+      console.log('Jim message.from', message.from)
       const account = await this.accountManager!.getAccount(message.from);
+      console.log('Jim account', account)
+      console.log('Jim account.balance', account.balance)
+      console.log('Jim account.balance.serialize()', account.balance.serialize())
       const pendingMessagesForAccount = this.messagePool.filter(
         queuedMessage => queuedMessage.message.from === message.from
       );
@@ -410,6 +414,7 @@ export default class Blockchain extends Emittery.Typed<
           data: signature
         }).serialize()
       });
+      console.log('Jim3 push signedMessage', signedMessage)
 
       // add to pool
       await this.pushSigned(signedMessage, false);

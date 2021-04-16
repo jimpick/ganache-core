@@ -718,6 +718,9 @@ export default class FilecoinApi implements types.Api {
     await this.#blockchain.waitForReady();
 
     const account = await this.#blockchain.accountManager!.getAccount(address);
+    console.log('Jim2 account', account)
+    console.log('Jim2 account.balance', account.balance)
+    console.log('Jim2 account.balance.serialize()', account.balance.serialize())
     return account.balance.serialize();
   }
 
